@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"	
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>Paibei</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <h2>Paibei Admin Site</h2>
+            </div>
+            <div id="content">
+                <div id="main">
+                    <div id="message" tal:condition="request.session.peek_flash()">
+                        <p tal:repeat="message request.session.pop_flash()">
+                            ${message}
+                        </p>
+                    </div>
+                    <div id="sections">
+                        <tal:block metal:define-slot="content">
+                        </tal:block>
+                    </div>
+                </div>
+                <div style="clear: both; height: 1px;"></div>
+            </div>
+            <div id="footer">
+                <p>
+                    Copyright &copy; 2014 <a href="http://mimikj.com">Paibei Inc.</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
