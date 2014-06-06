@@ -12,8 +12,7 @@ requires = [
     'waitress',
     'mongoengine',
     'pyramid_chameleon',
-    'requests',
-    'pyramid_storage',
+    'Pillow',
     ]
 
 test_extra_requires = [

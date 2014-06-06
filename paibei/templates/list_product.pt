@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="base">
+
+<tal:block metal:fill-slot="content">
+    <div>
+        <button class="btn" type="button" id="add">Add</button>
+        <button class="btn" type="button" id="delete">Delete</button>
+    </div>
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>商品名称</th>
+        </tr>
+        <tr tal:repeat="product products">
+            <td><input type="checkbox" name="delete_selector" value="${product.id}"/></td>
+            <td>${product.name}</td>
+        </tr>
+    </table>
+
+    <script>
+        $(function () {
+            $('#delete').click(function () {
+                var products = new Array();
+                $("input[name='delete_selector']:checked").each(function () {
+                    products.push(this.value);
+                });
+                <!--alert(products.join('\n'));-->
+                var my = {foo: products};
+                alert(JSON.stringify(my));
+                $.ajax("${request.route_url('delete_product')}", {
+                    data : JSON.stringify({products: products}),
+                    contentType : 'application/json',
+                    type : 'POST',
+                })
+                $(location).attr('href', "${request.route_url('product')}");
+                <!--$.post("${request.route_url('delete_product')}", { 'products': products.join(';') });-->
+                    <!--.done( function() { alert("Done") }; );-->
+            });
+        });
+    </script>
+</tal:block>
+
+</html>

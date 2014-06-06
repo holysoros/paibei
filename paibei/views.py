@@ -1,9 +1,11 @@
-from pyramid.view import view_config
+# -*- coding: utf-8 -*-
+from pyramid.view import (
+    view_defaults,
+    view_config,
+    forbidden_view_config,
+    notfound_view_config
+    )
 from pyramid.response import Response
-from models import (
-    places,
-    Product,
-)
 from pyramid.httpexceptions import (
     HTTPMovedPermanently,
     HTTPFound,
@@ -11,8 +13,13 @@ from pyramid.httpexceptions import (
     HTTPBadRequest,
     HTTPForbidden,
     )
+from models import (
+    places,
+    Product,
+    )
 from bson.objectid import ObjectId
 from gridfs import NoFile
+import json
 
 
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
@@ -27,7 +34,12 @@ def add_product_page(request):
     return {'places': places}
 
 
-@view_config(route_name='add_product', request_method='POST')
+@view_config(route_name='product', renderer='templates/list_product.pt', request_method='GET')
+def list_product(request):
+    products = Product.objects.all()
+    return {'products': products}
+
+@view_config(route_name='product', request_method='POST')
 def add_product(request):
     product = Product()
 
@@ -35,15 +47,23 @@ def add_product(request):
     product.place = request.POST['place']
     product.elements = request.POST['elements']
 
-    #import pdb; pdb.set_trace()
     image = request.POST['image']
     product.image.put(image.file)
 
     product.save()
-    import pdb; pdb.set_trace()
 
-    return Response("Successfully")
-    #return HTTPFound(location=request.route_url(''))
+    return HTTPFound(location=request.route_url('product'))
+
+
+@view_config(route_name='delete_product', request_method='POST')
+def delete_product(request):
+    products_to_delete = request.json_body.get('products')
+
+    for product_id in products_to_delete:
+        product = Product.objects(pk=product_id).first()
+        product.delete()
+
+    return HTTPFound(location=request.route_url('product'))
 
 
 @view_config(route_name='view_image', request_method='GET')
@@ -55,3 +75,33 @@ def view_image(request):
         return Response(file.read(), content_type='image/jpeg')
     except NoFile:
         raise HTTPNotFound
+
+
+@view_config(renderer='json', route_name='nfc_verify', request_method='GET')
+def nfc_verify(request):
+    nfc_id = request.matchdict.get('nfc_id', None)
+
+    if nfc_id == '1':
+        return {'image': 'http://www.iyi8.com/uploadfile/2014/0422/20140422124906947.jpg',
+                'name': '酵素', 'prod_place': '台湾',
+                'dist_place': '上海', 'serial': '512345'}
+    elif nfc_id == '2':
+        raise HTTPNotFound
+
+    raise HTTPNotFound
+
+
+@notfound_view_config()
+def notfound(request):
+    return Response(
+        body=json.dumps({'message': 'Custom `Not Found` message'}),
+        status='404 Not Found',
+        content_type='application/json')
+
+
+@forbidden_view_config()
+def forbidden(request):
+    return Response(
+        body=json.dumps({'message': 'Custom `Unauthorized` message'}),
+        status='401 Unauthorized',
+        content_type='application/json')
