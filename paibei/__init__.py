@@ -32,7 +32,8 @@ def add_admin_route(config):
     config.add_route('home', '/')
     config.add_route('view_image', '/images/{image_id}')
     config.add_route('product', '/admin/products')
-    config.add_route('delete_product', '/admin/products/delete')
+    config.add_route('delete_product', '/products/{product_id}/delete')
+    config.add_route('delete_products', '/admin/products/delete')
     config.add_route('add_product_page', '/admin/products/add')
 
 

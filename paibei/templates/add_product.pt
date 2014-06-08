@@ -1,10 +1,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
-      metal:use-macro="base">
+      metal:use-macro="load: base.pt">
 
 <tal:block metal:fill-slot="content">
-    <form accept-charset="UTF-8" id="news_form" action="${request.route_url('add_product')}" method="post" enctype="multipart/form-data">
+    <form accept-charset="UTF-8" id="news_form" action="${request.route_url('product')}" method="post" enctype="multipart/form-data">
         <fieldset>
             商品名称
             <input type="text" name="name">

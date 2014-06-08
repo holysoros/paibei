@@ -31,13 +31,24 @@ def my_view(request):
              request_method='GET',
              renderer='templates/add_product.pt')
 def add_product_page(request):
-    return {'places': places}
+    return {
+        'header1': 'Product',
+        'header2': 'Add',
+        'places': places,
+        }
 
 
-@view_config(route_name='product', renderer='templates/list_product.pt', request_method='GET')
+@view_config(route_name='product',
+             renderer='templates/list_product.pt',
+             request_method='GET')
 def list_product(request):
     products = Product.objects.all()
-    return {'products': products}
+    return {
+        'header1': 'Product',
+        'header2': 'List',
+        'products': products
+        }
+
 
 @view_config(route_name='product', request_method='POST')
 def add_product(request):
@@ -55,8 +66,19 @@ def add_product(request):
     return HTTPFound(location=request.route_url('product'))
 
 
-@view_config(route_name='delete_product', request_method='POST')
+@view_config(renderer='json',
+             route_name='delete_product',
+             request_method='DELETE')
 def delete_product(request):
+    prod_id = request.matchdict.get('product_id')
+    product = Product.objects(pk=prod_id).first()
+    product.delete()
+
+    return {}
+
+
+@view_config(route_name='delete_products', request_method='POST')
+def delete_products(request):
     products_to_delete = request.json_body.get('products')
 
     for product_id in products_to_delete:
