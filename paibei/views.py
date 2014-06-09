@@ -16,6 +16,7 @@ from pyramid.httpexceptions import (
 from models import (
     places,
     Product,
+    Record,
     )
 from bson.objectid import ObjectId
 from gridfs import NoFile
@@ -86,6 +87,24 @@ def delete_products(request):
         product.delete()
 
     return HTTPFound(location=request.route_url('product'))
+
+
+@view_config(route_name='add_record_page',
+             request_method='GET',
+             renderer='templates/add_record.pt')
+def add_record_page(request):
+    products = Product.objects.all()
+    return {
+        'header1': 'Record',
+        'header2': 'Add',
+        'products': products,
+        'places': places,
+        }
+
+
+@view_config(route_name='record', request_method='POST')
+def add_record(request):
+    record = Record()
 
 
 @view_config(route_name='view_image', request_method='GET')

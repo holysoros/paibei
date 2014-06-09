@@ -36,6 +36,9 @@ def add_admin_route(config):
     config.add_route('delete_products', '/admin/products/delete')
     config.add_route('add_product_page', '/admin/products/add')
 
+    config.add_route('add_record_page', '/admin/records/add')
+    config.add_route('record', '/admin/records')
+
 
 def add_api_route(config):
     config.add_route('nfc_verify', '/nfc/{nfc_id}')
