@@ -114,7 +114,9 @@ def generate_serial_num():
 
 def generate_batch(batch):
     for i in xrange(int(batch.count)):
-        record = Record(batch=batch, index=i, serial_num=generate_serial_num())
+        record = Record(batch=batch, index=i,
+                        serial_num=generate_serial_num(),
+                        left_time=batch.verify_time)
         record.save()
         utils.generate_qrcode_for_record(record.serial_num)
 
