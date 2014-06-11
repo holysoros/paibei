@@ -113,7 +113,7 @@ def generate_serial_num():
 
 
 def generate_batch(batch):
-    for i in xrange(int(batch.count)):
+    for i in xrange(1, int(batch.count)+1):
         record = Record(batch=batch, index=i,
                         serial_num=generate_serial_num(),
                         left_time=batch.verify_time)
