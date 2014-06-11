@@ -12,7 +12,7 @@ def id_generator(size=6, chars=string.digits+string.letters):
 
 
 def generate_qrcode_for_record(serial_num):
-    host = 'http://paibei.com'
+    host = 'http://112.124.117.97'
     to_dir = '/tmp/qrcode'
 
     url = urlparse.urljoin(host, serial_num)
