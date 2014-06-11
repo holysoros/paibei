@@ -13,6 +13,7 @@ requires = [
     'mongoengine',
     'pyramid_chameleon',
     'Pillow',
+    'qrcode',
     ]
 
 test_extra_requires = [
