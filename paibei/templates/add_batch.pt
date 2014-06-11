@@ -9,11 +9,11 @@
             <h3 class="box-title">添加防伪记录</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form role="form" id="news_form" action="${request.route_url('product')}" method="post">
+        <form role="form" id="news_form" action="${request.route_url('batch')}" method="post">
             <div class="box-body">
                 <div class="form-group">
                     <label>商品名称</label>
-                    <select class="form-control">
+                    <select class="form-control" name="product">
                         <div tal:repeat="prod products" tal:omit-tag=''>
                             <option>${prod.name}</option>
                         </div>
@@ -21,15 +21,19 @@
                 </div>
                 <div class="form-group">
                     <label>经销地域</label>
-                    <select class="form-control">
-                        <div tal:repeat="place places" tal:omit-tag=''>
-                            <option value="${place[0]}">${place[1]}</option>
+                    <select class="form-control" name="dist_place">
+                        <div tal:repeat="city cities" tal:omit-tag=''>
+                            <option>${city}</option>
                         </div>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>标签数量</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="count">
+                </div>
+                <div class="form-group">
+                    <label>可验证次数</label>
+                    <input type="text" class="form-control" name="verify_time">
                 </div>
             </div><!-- /.box-body -->
 

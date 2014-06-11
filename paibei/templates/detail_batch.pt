@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="load: base.pt">
+
+<tal:block metal:fill-slot="content">
+    <link href="${request.static_url('paibei:static/css/ionicons.min.css')}" rel="stylesheet" type="text/css" />
+    <link href="${request.static_url('paibei:static/css/datatables/dataTables.bootstrap.css')}" rel="stylesheet" type="text/css" />
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Batches</h3>                                    
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body table-responsive">
+                        <table id="news_table" class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <td>批次 ID:</td>
+                                    <td>${batch.id}</td>
+                                </tr>
+                                <tr>
+                                    <td>生成日期:</td>
+                                    <td>${batch.time}</td>
+                                </tr>
+                                <tr>
+                                    <td>商品:</td>
+                                    <td>${batch.product.name}</td>
+                                </tr>
+                                <tr>
+                                    <td>经销地:</td>
+                                    <td>${batch.dist_place}</td>
+                                </tr>
+                                <tr>
+                                    <td>可验证次数:</td>
+                                    <td>${batch.verify_time}</td>
+                                </tr>
+                                <tr>
+                                    <td>标签文件:</td>
+                                    <td><input type="file" name="image" id="image"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
+    </section><!-- /.content -->
+</tal:block>
+
+</html>

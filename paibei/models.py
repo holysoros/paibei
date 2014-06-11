@@ -13,7 +13,7 @@ places = (('TW', u'台湾'),
           ('SH', u'上海'),
           ('US', u'美国'))
 
-cities = ('上海', '北京', '天津')
+cities = (u'上海', u'北京', u'天津')
 
 
 class Product(Document):
@@ -23,7 +23,15 @@ class Product(Document):
     image = ImageField(size=(1024, 768, True), thumbnail_size=(200, 200, True))
 
 
-class Record(Document):
+class Batch(Document):
+    time = DateTimeField(default=datetime.datetime.now)
     product = ReferenceField(Product, required=True)
-    place = StringField(choices=cities, required=True)
-    number = IntField(required=True)
+    dist_place = StringField(choices=cities, required=True)
+    count = IntField(required=True)
+    verify_time = IntField(default=3)
+
+
+class Record(Document):
+    batch = ReferenceField(Batch, required=True)
+    index = IntField(required=True)
+    serial_num = StringField(min_length=6, max_length=6, required=True)

@@ -4,34 +4,46 @@
       metal:use-macro="load: base.pt">
 
 <tal:block metal:fill-slot="content">
-    <form accept-charset="UTF-8" id="news_form" action="${request.route_url('product')}" method="post" enctype="multipart/form-data">
-        <fieldset>
-            商品名称
-            <input type="text" name="name">
-            <br />
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Product</h3>                                    
+                    </div><!-- /.box-header -->
 
-            产地
-            <select name="place">
-                <div tal:repeat="place places" tal:omit-tag=''>
-                    <option value="${place[0]}">${place[1]}</option>
-                </div>
-            </select>
-            <br />
+                    <form role="form" accept-charset="UTF-8" id="news_form" action="${request.route_url('product')}" method="post" enctype="multipart/form-data">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="name">商品名称</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label>产地</label>
+                                <select class="form-control" name="place">
+                                    <div tal:repeat="place places" tal:omit-tag=''>
+                                        <option value="${place[0]}">${place[1]}</option>
+                                    </div>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">成分</label>
+                                <textarea class="form-control" rows="3" id="elements" name="elements" placeholder="Enter ..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">产品图片</label>
+                                <input type="file" name="image" id="image">
+                            </div>
+                        </div><!-- /.box-body -->
 
-            成分
-            <textarea id="elements" name="elements" rows="10" cols="30">
-            </textarea>
-            <br />
-
-            <label for="image">产品图片:</label>
-            <input type="file" name="image" id="image"><br>
-
-            <div class="form-actions">
-                <button type="submit">保存</button>
-                <button type="button">取消</button>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                </div><!-- /.box -->
             </div>
-        </fieldset>
-    </form>
+        </div>
+
+    </section><!-- /.content -->
 </tal:block>
 
 </html>

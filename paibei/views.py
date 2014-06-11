@@ -15,9 +15,12 @@ from pyramid.httpexceptions import (
     )
 from models import (
     places,
+    cities,
     Product,
+    Batch,
     Record,
     )
+import utils
 from bson.objectid import ObjectId
 from gridfs import NoFile
 import json
@@ -89,22 +92,84 @@ def delete_products(request):
     return HTTPFound(location=request.route_url('product'))
 
 
-@view_config(route_name='add_record_page',
+@view_config(route_name='add_batch_page',
              request_method='GET',
-             renderer='templates/add_record.pt')
-def add_record_page(request):
+             renderer='templates/add_batch.pt')
+def add_batch_page(request):
     products = Product.objects.all()
     return {
-        'header1': 'Record',
+        'header1': 'Batch',
         'header2': 'Add',
         'products': products,
-        'places': places,
+        'cities': cities,
         }
 
 
-@view_config(route_name='record', request_method='POST')
-def add_record(request):
-    record = Record()
+def generate_serial_num():
+    while True:
+        candidate_serial_num = utils.id_generator(6)
+        if not Record.objects(serial_num=candidate_serial_num).first():
+            return candidate_serial_num
+
+
+def generate_batch(batch):
+    for i in xrange(int(batch.count)):
+        record = Record(batch=batch, index=i, serial_num=generate_serial_num())
+        record.save()
+        utils.generate_qrcode_for_record(record.serial_num)
+
+
+@view_config(route_name='batch', request_method='POST')
+def add_batch(request):
+    batch = Batch()
+
+    batch.product = Product.objects(name=request.POST['product']).first()
+    batch.dist_place = request.POST['dist_place']
+    batch.count = request.POST['count']
+    batch.verify_time = request.POST['verify_time']
+
+    batch.save()
+
+    generate_batch(batch)
+
+    return HTTPFound(location=request.route_url('batch'))
+
+
+@view_config(route_name='batch',
+             renderer='templates/list_batch.pt',
+             request_method='GET')
+def list_batch(request):
+    batches = Batch.objects.all()
+    return {
+        'header1': 'Batch',
+        'header2': 'List',
+        'batches': batches,
+        }
+
+
+@view_config(route_name='delete_batches', request_method='POST')
+def delete_batches(request):
+    batches_to_delete = request.json_body.get('batches')
+
+    for batch_id in batches_to_delete:
+        batch = Batch.objects(pk=batch_id).first()
+        batch.delete()
+
+    return HTTPFound(location=request.route_url('batch'))
+
+
+@view_config(route_name='detail_batch',
+             request_method='GET',
+             renderer='templates/detail_batch.pt')
+def detail_batch(request):
+    batch_id = request.matchdict.get('batch_id')
+    batch = Batch.objects(pk=batch_id).first()
+
+    return {
+        'header1': 'Batch',
+        'header2': 'Detail',
+        'batch': batch
+        }
 
 
 @view_config(route_name='view_image', request_method='GET')
