@@ -29,6 +29,8 @@ class Batch(Document):
     dist_place = StringField(choices=cities, required=True)
     count = IntField(required=True)
     verify_time = IntField(default=3)
+    bid = StringField(required=True)
+    url = URLField()
 
 
 class Record(Document):

@@ -24,6 +24,8 @@ import utils
 from bson.objectid import ObjectId
 from gridfs import NoFile
 import json
+import os
+import urlparse
 
 
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
@@ -113,12 +115,28 @@ def generate_serial_num():
 
 
 def generate_batch(batch):
+    host = 'http://112.124.117.97'
+    zip_dir = '/usr/share/nginx/html'
+
+    import tempfile
+    to_dir = tempfile.mkdtemp()
+    print to_dir
+
+    # generate all qrcode in that temp dir
     for i in xrange(1, int(batch.count)+1):
         record = Record(batch=batch, index=i,
                         serial_num=generate_serial_num(),
                         left_time=batch.verify_time)
         record.save()
-        utils.generate_qrcode_for_record(record.serial_num)
+
+        url = urlparse.urljoin(host, batch.bid)
+        filepath = os.path.join(to_dir, record.serial_num + '.png')
+        utils.generate_qrcode(url, filepath)
+
+    zip_filepath = os.path.join(zip_dir, batch.bid + '.zip')
+    utils.zipdir(to_dir, zip_filepath)
+
+    utils.safe_rmtree(to_dir)
 
 
 @view_config(route_name='batch', request_method='POST')
@@ -129,6 +147,7 @@ def add_batch(request):
     batch.dist_place = request.POST['dist_place']
     batch.count = request.POST['count']
     batch.verify_time = request.POST['verify_time']
+    batch.bid = utils.get_batch_id(batch)
 
     batch.save()
 
