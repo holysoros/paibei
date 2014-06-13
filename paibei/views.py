@@ -107,13 +107,6 @@ def add_batch_page(request):
         }
 
 
-def generate_serial_num():
-    while True:
-        candidate_serial_num = utils.id_generator(6)
-        if not Record.objects(serial_num=candidate_serial_num).first():
-            return candidate_serial_num
-
-
 def generate_batch(batch):
     host = 'http://112.124.117.97'
     zip_dir = '/usr/share/nginx/html'
@@ -125,7 +118,7 @@ def generate_batch(batch):
     # generate all qrcode in that temp dir
     for i in xrange(1, int(batch.count)+1):
         record = Record(batch=batch, index=i,
-                        serial_num=generate_serial_num(),
+                        serial_num=utils.generate_serial_num(),
                         left_time=batch.verify_time)
         record.save()
 

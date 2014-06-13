@@ -6,6 +6,11 @@ import datetime
 import errno
 import shutil
 #from pinyin import PinYin
+from paibei.models import (
+    Product,
+    Batch,
+    Record,
+    )
 
 import qrcode
 from PIL import Image
@@ -90,3 +95,10 @@ def get_batch_id(batch):
     #return '-'.join((ts, product_field, dist_place_field))
 
     return datetime.datetime.now().strftime('%y%m%d-%H-%M')
+
+
+def generate_serial_num():
+    while True:
+        candidate_serial_num = utils.id_generator(6)
+        if not Record.objects(serial_num=candidate_serial_num).first():
+            return candidate_serial_num
