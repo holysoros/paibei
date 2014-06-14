@@ -6,6 +6,7 @@ from pyramid.view import (
     notfound_view_config
     )
 from pyramid.response import Response
+from pyramid.renderers import render_to_response
 from pyramid.httpexceptions import (
     HTTPMovedPermanently,
     HTTPFound,
@@ -28,11 +29,33 @@ import os
 import urlparse
 
 
-@view_config(route_name='qrcode_verify', renderer='templates/mobile/mobile_index.pt')
+@view_config(route_name='qrcode_verify')
 def qrcode_verify(request):
     record_serial_num = request.matchdict['qrcode_id']
     record = Record.objects(serial_num=record_serial_num).first()
-    return {'record': record}
+    if record:
+        return render_to_response('templates/mobile/mobile_index.pt',
+                                  {'record': record}, request=request)
+    else:
+        return render_to_response('templates/mobile/failed.pt',
+                                  {}, request=request)
+
+
+@view_config(route_name='qrcode_verify_result',
+             renderer='templates/mobile/success.pt')
+def qrcode_verify_result(request):
+    record_serial_num = request.matchdict['qrcode_id']
+    record = Record.objects(serial_num=record_serial_num).first()
+
+    if record:
+        batch = record.batch
+        product = batch.product
+        return {
+            'product_image_url': request.route_url('view_image', image_id=product.image._id),
+            'product_name': product.name,
+            'product_place': product.place,
+            'batch_id': batch.bid,
+        }
 
 
 @view_config(route_name='add_product_page',
