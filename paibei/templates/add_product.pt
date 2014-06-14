@@ -22,7 +22,7 @@
                                 <label>产地</label>
                                 <select class="form-control" name="place">
                                     <div tal:repeat="place places" tal:omit-tag=''>
-                                        <option value="${place[0]}">${place[1]}</option>
+                                        <option value="${place}">${place}</option>
                                     </div>
                                 </select>
                             </div>
