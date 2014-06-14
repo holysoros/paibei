@@ -1,0 +1,62 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>一三一素防伪验证平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script type="application/x-javascript"></script>
+<link href="css/theme-style.css" rel='stylesheet' type='text/css' />
+<link  href="css/jquery.mobile-1.4.2.min.css" rel="Stylesheet" type="text/css" />
+<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+
+<script>
+	$(document).on("pageinit","#page-success",function(){
+	  $("p").on("tap",function(){
+	    if($(this).attr('id') == "contact") {
+		  window.location.href = "contactus.html";
+		}
+	  });              
+	});
+</script>
+</head>
+
+<body>
+<div data-role="page" id="page-success">
+	<div id="fea" class="features">
+		<div class="head text-center" style="color:#11a109; font-size:30px;">
+			<br/>
+			<img src="./images/success.png"  style="vertical-align:middle;padding-right:10px;" width="58px" height="58px">  防伪验证通过
+		</div>
+		<br/>
+		<div class="head text-center">
+			<img align="absmiddle" src="./images/productEG.png" width="288px" height="219px">
+		</div>
+		<br/>
+		<div class="ui-grid-a">
+			<div class="ui-block-a">
+				<div class="ui-bar ui-bar-c" style="text-align:right;"><img src="./images/logo.png" width="126px" height="126px" ></div>
+			</div>
+			<div class="ui-block-b">
+				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:15px;">名称：乳酸菌</div>
+				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:15px;">产地：台湾</div>
+				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:15px;">售价：580元</div>
+				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:15px;">批次号：20140612-JS-SH</div>
+			</div>
+		</div>
+		<br/>
+	</div>
+	<div Style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff;">
+		<p id="contact"><img align="absmiddle" src="./images/phone-1.png" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" >  联系我们</p>
+	</div>
+</div>
+</body>
+</html>
+

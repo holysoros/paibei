@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>一三一素防伪验证平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script type="application/x-javascript"></script>
+<link href="${request.static_url('paibei:static/mobile/css/theme-style.css')}" rel='stylesheet' type='text/css' />
+<link  href="${request.static_url('paibei:static/mobile/css/jquery.mobile-1.4.2.min.css')}" rel="Stylesheet" type="text/css" />
+<script src="${request.static_url('paibei:static/mobile/js/jquery-1.11.1.js')}" type="text/javascript"></script>
+<script src="${request.static_url('paibei:static/mobile/js/jquery.mobile-1.4.2.min.js')}" type="text/javascript"></script>
+</head>
+
+<body>
+<div data-role="page">
+	<div id="fea" class="features">
+		<div class="head text-center">
+			<br/>
+			<br/>
+			<br/>
+		</div>
+		<div class="ui-grid-b">
+			<div class="ui-block-a"></div>
+			<div class="ui-block-b">
+				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
+			</div>
+			<div class="ui-block-c"></div>
+		</div>
+		<br/>
+		<br/>
+		<div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">
+		    <div><img src="./images/warning.png" width="29px" height="26px">    你是否要继续防伪验证</div>
+			<br/>
+		    <div>提示：二维码验证只能使用1次</div>			
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<div class="ui-bar ui-bar-c">
+						<a href="#" data-role="button" data-inline="true">继续</a>
+					</div>
+				</div>
+				<div class="ui-block-b">
+					<div class="ui-bar ui-bar-c">
+						<a href="#" data-role="button" data-inline="true" onclick="window.close()">取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="features-grids text-center">
+			<div class="col-md-3 features-grid">
+				<img src="./images/logo.png" width="126px" height="126px" >
+			</div>
+		</div>
+		<br/>
+		<br/>
+	</div>
+</div>
+</body>
+</html>
+

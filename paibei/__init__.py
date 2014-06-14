@@ -23,13 +23,13 @@ def main(global_config, **settings):
 
     config.include(add_admin_route)
     config.include(add_api_route)
+    config.include(add_mobile_web_route)
 
     config.scan()
     return config.make_wsgi_app()
 
 
 def add_admin_route(config):
-    config.add_route('home', '/')
     config.add_route('view_image', '/images/{image_id}')
     config.add_route('product', '/admin/products')
     config.add_route('delete_product', '/products/{product_id}/delete')
@@ -45,3 +45,8 @@ def add_admin_route(config):
 
 def add_api_route(config):
     config.add_route('nfc_verify', '/nfc/{nfc_id}')
+
+
+def add_mobile_web_route(config):
+    config.add_route('qrcode_verify', '/{qrcode_id}')
+    config.add_route('qrcode_verify_result', '/{qrcode_id}/r')

@@ -28,9 +28,11 @@ import os
 import urlparse
 
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
-def my_view(request):
-    return {'project': 'paibei'}
+@view_config(route_name='qrcode_verify', renderer='templates/mobile/mobile_index.pt')
+def qrcode_verify(request):
+    record_serial_num = request.matchdict['qrcode_id']
+    record = Record.objects(serial_num=record_serial_num).first()
+    return {'record': record}
 
 
 @view_config(route_name='add_product_page',

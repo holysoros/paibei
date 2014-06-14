@@ -1,0 +1,64 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>一三一素防伪验证平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<script type="application/x-javascript"></script>
+<link href="css/theme-style.css" rel='stylesheet' type='text/css' />
+<link  href="css/jquery.mobile-1.4.2.min.css" rel="Stylesheet" type="text/css" />
+<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="js/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+
+<script>
+	$(document).on("pageinit","#page-failed",function(){
+	  $("p").on("tap",function(){
+	    if($(this).attr('id') == "contact") {
+		  window.location.href = "contactus.html";
+		}
+	  });              
+	});
+</script>
+
+</head>
+
+<body>
+<div data-role="page" id="page-failed">
+	<div id="fea" class="features">
+		<div class="head text-center">
+			<br/>
+			<br/>
+			<br/>
+			<img align="absmiddle" src="./images/failed.png" width="58px" height="58px">
+		</div>
+		<br/>
+		<br/>
+		<div class="features-grids text-center" style="color:#ffffff; margin:auto; font-size:20px;">
+			<div>无法识别的标签</div>
+			<div>防伪验证失败</div>
+			<div>请谨防假冒</div>
+		</div>
+		<br/>
+		<br/>
+		<div class="features-grids text-center">
+			<div class="col-md-3 features-grid">
+				<img src="./images/logo.png" width="126px" height="126px" >
+			</div>
+		</div>
+		<br/>
+		<br/>
+	</div>
+	<div style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff;">
+		<p id="contact"><img align="absmiddle" src="./images/phone-1.png" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" >  联系我们</p>
+	</div>
+</div>
+</body>
+</html>
+
