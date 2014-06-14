@@ -201,14 +201,22 @@ def view_image(request):
 def nfc_verify(request):
     nfc_id = request.matchdict.get('nfc_id', None)
 
-    if nfc_id == '1':
-        return {'image': 'http://www.iyi8.com/uploadfile/2014/0422/20140422124906947.jpg',
-                'name': '酵素', 'prod_place': '台湾',
-                'dist_place': '上海', 'serial': '512345'}
-    elif nfc_id == '2':
-        raise HTTPNotFound
+    record = Record.objects(nfc_id=nfc_id).first()
+    if record:
+        batch = record.batch
+        product = batch.product
+        return {
+            'image': request.route_url('view_image', image_id=product.image._id),
+            'name': product.name,
+            'prod_place': product.place,
+            'dist_place': batch.dist_place,
+            'serial': batch.bid,
+        }
+    else:
+        request.response.status_int = 404
+        return {}
 
-    raise HTTPNotFound
+    return {}
 
 
 @notfound_view_config()

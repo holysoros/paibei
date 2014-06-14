@@ -99,6 +99,6 @@ def get_batch_id(batch):
 
 def generate_serial_num():
     while True:
-        candidate_serial_num = utils.id_generator(6)
+        candidate_serial_num = id_generator(6)
         if not Record.objects(serial_num=candidate_serial_num).first():
             return candidate_serial_num

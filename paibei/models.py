@@ -3,6 +3,8 @@ from mongoengine import *
 import datetime
 
 
+__all__ = ['User', 'Product', 'Batch', 'Record']
+
 class User(Document):
     name = StringField(required=True, unique=True)
     password = StringField(min_length=6, required=True)
@@ -38,3 +40,4 @@ class Record(Document):
     index = IntField(required=True)
     serial_num = StringField(min_length=6, max_length=6, required=True)
     left_time = IntField(required=True)
+    nfc_id = StringField()

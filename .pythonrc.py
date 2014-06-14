@@ -1,7 +1,4 @@
 from mongoengine import connect
-from paibei.models import (
-    Product,
-    Batch,
-    )
+from paibei.models import *
 
 connect('paibei')
