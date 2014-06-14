@@ -147,7 +147,7 @@ def generate_batch(batch):
                         left_time=batch.verify_time)
         record.save()
 
-        url = urlparse.urljoin(host, batch.bid)
+        url = urlparse.urljoin(host, record.serial_num)
         filepath = os.path.join(to_dir, record.serial_num + '.png')
         utils.generate_qrcode(url, filepath)
 
