@@ -20,7 +20,7 @@
                             <tbody>
                                 <tr>
                                     <td>批次 ID:</td>
-                                    <td>${batch.id}</td>
+                                    <td>${batch.bid}</td>
                                 </tr>
                                 <tr>
                                     <td>生成日期:</td>
