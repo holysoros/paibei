@@ -50,3 +50,4 @@ def add_api_route(config):
 def add_mobile_web_route(config):
     config.add_route('qrcode_verify', '/{qrcode_id}')
     config.add_route('qrcode_verify_result', '/{qrcode_id}/r')
+    config.add_route('contact_us', '/w/contact_us')

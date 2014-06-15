@@ -58,6 +58,12 @@ def qrcode_verify_result(request):
         }
 
 
+@view_config(route_name='contact_us',
+             renderer='templates/mobile/contact_us.pt')
+def contact_us(request):
+    return {}
+
+
 @view_config(route_name='add_product_page',
              request_method='GET',
              renderer='templates/add_product.pt')

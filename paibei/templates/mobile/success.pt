@@ -36,7 +36,7 @@
     <script>
         $(function () {
             $('#contact_us').click(function () {
-                $(location).attr('href', "${request.static_url('paibei:static/mobile/contactus.html')}");
+                $(location).attr('href', "${request.route_url('contact_us')}");
             });
         });
     </script>
