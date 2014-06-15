@@ -20,13 +20,7 @@
 			<br/>
 			<br/>
 		</div>
-		<div class="ui-grid-b">
-			<div class="ui-block-a"></div>
-			<div class="ui-block-b">
-				<div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
-			</div>
-			<div class="ui-block-c"></div>
-		</div>
+		<div style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
 		<br/>
 		<br/>
 		<div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">

@@ -4,51 +4,43 @@
   metal:use-macro="load: mobile_base.pt">
 
   <tal:block metal:fill-slot="content">
-    <section class="content">
-      <div data-role="page">
-        <div id="fea" class="features">
-          <div class="head text-center">
-            <br/>
-            <br/>
-            <br/>
-          </div>
-          <div class="ui-grid-b">
-            <div class="ui-block-a"></div>
-            <div class="ui-block-b">
-              <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
-            </div>
-            <div class="ui-block-c"></div>
-          </div>
+    <div data-role="page">
+      <div id="fea" class="features">
+        <div class="head text-center">
           <br/>
-          <br/>
-          <div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">
-              <div><img src="${request.static_url('paibei:static/mobile/images/warning.png')}" width="29px" height="26px">    你是否要继续防伪验证</div>
-            <br/>
-            <div>提示：二维码验证只能使用${record.left_time}次</div>			
-            <div class="ui-grid-a">
-              <div class="ui-block-a">
-                <div class="ui-bar ui-bar-c">
-                  <a href="${request.route_url('qrcode_verify_result', qrcode_id=record.serial_num)}" data-role="button" data-inline="true" id="continue" >继续</a>
-                </div>
-              </div>
-              <div class="ui-block-b">
-                <div class="ui-bar ui-bar-c">
-                  <a href="#" data-role="button" data-inline="true" onclick="window.close()">取消</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br/>
-          <div class="features-grids text-center">
-            <div class="col-md-3 features-grid">
-              <img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="126px" height="126px" >
-            </div>
-          </div>
           <br/>
           <br/>
         </div>
+        <div style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
+        <br/>
+        <br/>
+        <div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">
+            <div><img src="${request.static_url('paibei:static/mobile/images/warning.png')}" width="29px" height="26px">    你是否要继续防伪验证</div>
+          <br/>
+          <div>提示：二维码验证只能使用${record.left_time}次</div>			
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <div class="ui-bar ui-bar-c">
+                <a href="${request.route_url('qrcode_verify_result', qrcode_id=record.serial_num)}" data-role="button" data-inline="true" id="continue" >继续</a>
+              </div>
+            </div>
+            <div class="ui-block-b">
+              <div class="ui-bar ui-bar-c">
+                <a href="#" data-role="button" data-rel="back" data-theme="a" data-inline="true">取消</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="features-grids text-center">
+          <div class="col-md-3 features-grid">
+            <img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="126px" height="126px" >
+          </div>
+        </div>
+        <br/>
+        <br/>
       </div>
-    </section><!-- /.content -->
+    </div>
   </tal:block>
 
 </html>
