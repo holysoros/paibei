@@ -15,7 +15,7 @@
             <br/>
             <br/>
             <div class="features-grids text-center" style="color:#ffffff; margin:auto; font-size:20px;">
-                <div>无法识别的标签</div>
+                <div>${message}</div>
                 <div>防伪验证失败</div>
                 <div>请谨防假冒</div>
             </div>

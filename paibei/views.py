@@ -33,12 +33,15 @@ import urlparse
 def qrcode_verify(request):
     record_serial_num = request.matchdict['qrcode_id']
     record = Record.objects(serial_num=record_serial_num).first()
-    if record:
+    if record and record.left_time > 0:
         return render_to_response('templates/mobile/mobile_index.pt',
                                   {'record': record}, request=request)
+    elif record:
+        return render_to_response('templates/mobile/failed.pt',
+                                  {'message': u'二维码已失效'}, request=request)
     else:
         return render_to_response('templates/mobile/failed.pt',
-                                  {}, request=request)
+                                  {'message': u'伪造的二维码'}, request=request)
 
 
 @view_config(route_name='qrcode_verify_result',
