@@ -97,6 +97,7 @@ def add_product(request):
     product.name = request.POST['name'].strip()
     product.place = request.POST['place']
     product.elements = request.POST['elements']
+    product.price = float(request.POST['price'])
 
     image = request.POST['image']
     product.image.put(image.file)

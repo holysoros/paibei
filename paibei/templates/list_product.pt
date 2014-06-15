@@ -26,6 +26,7 @@
                                     <th>名称</th>
                                     <th>产地</th>
                                     <th>成分</th>
+                                    <th>售价</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,7 @@
                                     <td>${product.name}</td>
                                     <td>${product.place}</td>
                                     <td>${product.elements}</td>
+                                    <td>${product.price}</td>
                                     <td><button class="btn btn-default delete_btn" id="${product.id}">删除</button></td>
                                 </tr>
                             </tbody>
@@ -42,6 +44,7 @@
                                     <th>名称</th>
                                     <th>产地</th>
                                     <th>成分</th>
+                                    <th>售价</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>

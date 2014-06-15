@@ -25,6 +25,7 @@ class Product(Document):
     place = StringField(choices=places, default=u'台湾', required=True)
     elements = StringField()
     image = ImageField(size=(1024, 768, True), thumbnail_size=(200, 200, True))
+    price = FloatField()
 
 
 class Batch(Document):
