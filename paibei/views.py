@@ -202,6 +202,11 @@ def add_batch(request):
     return HTTPFound(location=request.route_url('batch'))
 
 
+@view_config(route_name='admin_index', request_method='GET')
+def admin_index(request):
+    return HTTPFound(location=request.route_url('product'))
+
+
 @view_config(route_name='batch',
              renderer='templates/list_batch.pt',
              request_method='GET')

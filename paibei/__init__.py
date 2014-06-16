@@ -31,6 +31,7 @@ def main(global_config, **settings):
 
 def add_admin_route(config):
     config.add_route('view_image', '/images/{image_id}')
+    config.add_route('admin_index', '/admin')
     config.add_route('product', '/admin/products')
     config.add_route('delete_product', '/products/{product_id}/delete')
     config.add_route('delete_products', '/admin/products/delete')
@@ -49,6 +50,6 @@ def add_api_route(config):
 
 
 def add_mobile_web_route(config):
-    config.add_route('qrcode_verify', '/{qrcode_id}')
-    config.add_route('qrcode_verify_result', '/{qrcode_id}/r')
+    config.add_route('qrcode_verify', '/{qrcode_id:[a-zA-Z0-9]{6}}')
+    config.add_route('qrcode_verify_result', '/{qrcode_id:[a-zA-Z0-9]{6}}/r')
     config.add_route('contact_us', '/w/contact_us')
