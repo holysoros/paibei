@@ -75,7 +75,25 @@ def add_product_page(request):
         'header1': 'Product',
         'header2': 'Add',
         'places': places,
+        'product_id': '',
         }
+
+
+@view_config(route_name='edit_product_page',
+             request_method='GET',
+             renderer='templates/add_product.pt')
+def edit_product_page(request):
+    prod_id = request.matchdict.get('product_id')
+    prod = Product.objects(pk=prod_id).first()
+    if prod:
+        return {
+            'header1': 'Product',
+            'header2': 'Edit',
+            'places': places,
+            'product_id': prod_id,
+            }
+    else:
+        raise HTTPNotFound
 
 
 @view_config(route_name='product',
