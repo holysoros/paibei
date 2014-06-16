@@ -36,7 +36,8 @@ def add_admin_route(config):
     config.add_route('delete_product', '/products/{product_id}/delete')
     config.add_route('delete_products', '/admin/products/delete')
     config.add_route('add_product_page', '/admin/products/new')
-    config.add_route('edit_product_page', '/admin/products/edit')
+    config.add_route('edit_product_page', '/admin/products/{product_id}/edit')
+    config.add_route('modify_product', '/admin/products/{product_id}')
 
     config.add_route('add_batch_page', '/admin/batches/add')
     config.add_route('batch', '/admin/batches')

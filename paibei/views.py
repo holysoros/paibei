@@ -77,6 +77,8 @@ def add_product_page(request):
         'header2': 'Add',
         'places': places,
         'product_id': '',
+        'form_action': request.route_url('product'),
+        'product': Product(),
         }
 
 
@@ -92,6 +94,8 @@ def edit_product_page(request):
             'header2': 'Edit',
             'places': places,
             'product_id': prod_id,
+            'form_action': request.route_url('modify_product', product_id=prod_id),
+            'product': prod,
             }
     else:
         raise HTTPNotFound
@@ -109,19 +113,46 @@ def list_product(request):
         }
 
 
-@view_config(route_name='product', request_method='POST')
-def add_product(request):
-    product = Product()
+def _get_product_based_on_request(request):
+    prod_id = request.POST['_id'].strip()
+    if prod_id:
+        prod = Product.objects(pk=prod_id).first()
+        return prod
+    else:
+        return Product()
 
+
+def _save_product(request, product):
     product.name = request.POST['name'].strip()
     product.place = request.POST['place']
-    product.elements = request.POST['elements']
-    product.price = float(request.POST['price'])
+    elements = request.POST.get('elements', None)
+    if elements:
+        product.elements = elements
+    price = request.POST.get('price', None)
+    if price:
+        product.price = float(price)
 
-    image = request.POST['image']
-    product.image.put(image.file)
+    image = request.POST.get('image', None)
+    if image:
+        product.image.put(image.file)
 
     product.save()
+
+
+@view_config(route_name='product', request_method='POST')
+def add_product(request):
+    product = _get_product_based_on_request(request)
+
+    _save_product(request, product)
+
+    return HTTPFound(location=request.route_url('product'))
+
+
+@view_config(route_name='modify_product', request_method='POST')
+def modify_product(request):
+    product = _get_product_based_on_request(request)
+
+    _save_product(request, product)
 
     return HTTPFound(location=request.route_url('product'))
 
