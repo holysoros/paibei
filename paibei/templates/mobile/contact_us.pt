@@ -8,41 +8,41 @@
         <div id="fea" class="features">
             <div class="head text-center">
                 <br/>
-                <div style="color:#ffffff; text-align:center; font-size:16px; vertical-align:center;">
+                <div style="color:#ffffff; text-align:center; font-size:16px; vertical-align:center; text-shadow:none;">
                   <img src="${request.static_url('paibei:static/mobile/images/phone.png')}" style="vertical-align:middle;padding-right:10px;" width="29px" height="26px">    联系我们
                 </div>
             </div>
                 <br/>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px;">客服专线 ：</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px; text-shadow:none;">客服专线 ：</div>
                 </div>
                 <div class="ui-block-b">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px;">400-809-1314</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px; text-shadow:none;">400-809-1314</div>
                 </div>
             </div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px;">服务时间 ：</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px; text-shadow:none;">服务时间 ：</div>
                 </div>
                 <div class="ui-block-b">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px;">09:00 -- 15:30</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px; text-shadow:none;">09:00 -- 15:30</div>
                 </div>
             </div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px;">E-MAIL ：</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px; text-shadow:none;">电子邮箱 ：</div>
                 </div>
                 <div class="ui-block-b">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px;">vip@1314.cn</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px; text-shadow:none;">vip@131su.cn</div>
                 </div>
             </div>
             <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px;">主页 ：</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:right; font-size:16px; text-shadow:none;">官方网站 ：</div>
                 </div>
                 <div class="ui-block-b">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px;">www.131su.cn</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:16px; text-shadow:none;">www.131su.cn</div>
                 </div>
             </div>
             <br/>

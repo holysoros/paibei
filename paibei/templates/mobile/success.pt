@@ -6,7 +6,7 @@
   <tal:block metal:fill-slot="content">
     <div data-role="page" id="page-success">
         <div id="fea" class="features">
-            <div class="head text-center" style="color:#11a109; font-size:20px;">
+            <div class="head text-center" style="color:#11a109; font-size:20px; text-shadow:none;">
                 <br/>
                 <img src="${request.static_url('paibei:static/mobile/images/success.png')}"  style="vertical-align:middle;padding-right:10px;" width="58px" height="58px">  防伪验证通过
             </div>
@@ -20,15 +20,15 @@
                     <div class="ui-bar ui-bar-c" style="text-align:right;"><img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="126px" height="126px" ></div>
                 </div>
                 <div class="ui-block-b" style="vertical-align:middle;">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px;">名称：${product_name}</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px;">产地：${product_place}</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px">售价：580元</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px">批次号：${batch_id}</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">名称：${product_name}</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">产地：${product_place}</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">售价：580元</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">批次号：${batch_id}</div>
                 </div>
             </div>
             <br/>
         </div>
-        <div Style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff;">
+        <div Style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff; text-shadow:none;">
             <p id="contact_us"><img align="absmiddle" src="${request.static_url('paibei:static/mobile/images/phone-1.png')}" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" >  联系我们</p>
         </div>
     </div>

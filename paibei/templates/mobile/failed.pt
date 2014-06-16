@@ -15,9 +15,9 @@
             <br/>
             <br/>
             <div class="features-grids text-center" style="color:#ffffff; margin:auto; font-size:20px;">
-                <div>${message}</div>
-                <div>防伪验证失败</div>
-                <div>请谨防假冒</div>
+                <div style="text-shadow:none;">${message}</div>
+                <div style="text-shadow:none;">防伪验证失败</div>
+                <div style="text-shadow:none;">请谨防假冒</div>
             </div>
             <br/>
             <br/>
@@ -29,7 +29,7 @@
             <br/>
             <br/>
         </div>
-        <div style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff;">
+        <div style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff; text-shadow:none;">
           <p id="contact_us"><img align="absmiddle" src="${request.static_url('paibei:static/mobile/images/phone-1.png')}" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" >  联系我们</p>
         </div>
     </div>

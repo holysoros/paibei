@@ -11,13 +11,13 @@
           <br/>
           <br/>
         </div>
-        <div style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center;">一三一素产品防伪验证平台</div>
+        <div style="color:#ffffff; text-align:center; font-size:20px; vertical-align:center; text-shadow:none;">一三一素产品防伪验证平台</div>
         <br/>
         <br/>
         <div class="features-grids text-center" style="color:#ffffff; border:1px solid #a0a3a9; margin:auto; width:280px; background:#454649;">
-            <div><img src="${request.static_url('paibei:static/mobile/images/warning.png')}" width="29px" height="26px">    你是否要继续防伪验证</div>
+            <div style="text-shadow:none;"><img src="${request.static_url('paibei:static/mobile/images/warning.png')}" width="29px" height="26px">    你是否要继续防伪验证</div>
           <br/>
-          <div>提示：二维码验证只能使用${record.left_time}次</div>			
+          <div style="text-shadow:none;">提示：二维码验证只能使用${record.left_time}次</div>			
           <div class="ui-grid-a">
             <div class="ui-block-a">
               <div class="ui-bar ui-bar-c">
