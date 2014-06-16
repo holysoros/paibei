@@ -57,6 +57,7 @@ def qrcode_verify_result(request):
             'product_image_url': request.route_url('view_image', image_id=product.image._id),
             'product_name': product.name,
             'product_place': product.place,
+            'product_price': product.price,
             'batch_id': batch.bid,
         }
 

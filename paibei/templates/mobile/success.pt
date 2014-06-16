@@ -22,7 +22,7 @@
                 <div class="ui-block-b" style="vertical-align:middle;">
                     <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">名称：${product_name}</div>
                     <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">产地：${product_place}</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">售价：580元</div>
+                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">售价：${product_price}元</div>
                     <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">批次号：${batch_id}</div>
                 </div>
             </div>
