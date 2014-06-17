@@ -10,7 +10,7 @@
 			<br/>
 			<br/>
 			<div style="color:#ffffff; text-align:center; font-size:2.0em; vertical-align:center; text-shadow:none;">
-				<img src="./images/phone.png" style="vertical-align:middle; padding-right:2%;" width="10%" height="10%">    联系我们
+				<img src="${request.static_url('paibei:static/mobile/images/phone.png')}" style="vertical-align:middle; padding-right:2%;" width="10%" height="10%">    联系我们
 			</div>
 		</div>
 		<br/>
@@ -50,11 +50,11 @@
 		<br/>
 		<br/>
 		<div align="center">
-			<img src="./images/logo.png" width="30%" height="30%" >
+			<img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="30%" height="30%" >
 		</div>
 		
 		<div data-role="footer" data-position="fixed" style="background:#444447">
-			<img  src="./images/back_bg.png" width="6%" height="6%" onclick="history.back()" >
+			<img src="${request.static_url('paibei:static/mobile/images/back_bg.png')}" width="6%" height="6%" onclick="history.back()" >
 		</div>
 	</div>
   </tal:block>
