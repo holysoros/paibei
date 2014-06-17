@@ -14,6 +14,7 @@ requires = [
     'pyramid_chameleon',
     'Pillow',
     'qrcode',
+    'Paste',
     ]
 
 test_extra_requires = [
