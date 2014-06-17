@@ -1,0 +1,49 @@
+---
+- hosts: paibei
+  remote_user: root
+
+  tasks:
+  - name: config yum nginx repo
+    copy: src=nginx.repo dest=/etc/yum.repos.d/nginx.repo owner=root group=root mode=0644
+
+  - name: config yum nginx repo
+    copy: src=mongodb.repo dest=/etc/yum.repos.d/nginx.repo owner=root group=root mode=0644
+
+  - name: install epel rpm
+    command: rpm -Uvh --force http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+  - name: install rpm packages paibei requires
+    yum: pkg={{ item }} state=present
+    with_items:
+      - centos-release-SCL
+      - nginx
+      - python-pip
+      - libjpeg-devel
+      - python-devel
+      - zlib-devel
+      - git
+      - tree
+      - ack
+      - mongodb-org
+      - lsof
+
+  - name: ensure mongodb is running
+    service: name=mongod state=started enabled=yes
+
+  - name: mkdir ~/.pip
+    command: mkdir -p /root/.pip
+
+  - name: config pip mirror
+    copy: src=pip.conf dest=/root/.pip/pip.conf owner=root group=root mode=0644
+
+  - name: install python packages
+    pip: name=virtualenv
+
+  - name: get paibei source code
+    git: repo=https://github.com/holysoros/paibei.git dest=/root/paibei accept_hostkey=yes
+
+  - name: create virtualenv
+    command: virtualenv /root/env
+
+  - name: deploy paibei
+    command: /root/env/bin/pip install -r /root/paibei/requirements.txt; /root/env/bin/python /root/paibei/setup.py develop
