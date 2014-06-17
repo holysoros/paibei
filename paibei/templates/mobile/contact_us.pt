@@ -4,7 +4,7 @@
   metal:use-macro="load: mobile_base.pt">
 
   <tal:block metal:fill-slot="content">
-	<div data-role="page" id="page-contact" style="background:url(./images/page_bg.png);">
+	<div data-role="page" id="page-contact" style="background:url(${request.static_url('paibei:static/mobile/images/page_bg.png')};">
 		<div class="head text-center">
 			<br/>
 			<br/>
