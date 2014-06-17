@@ -4,42 +4,48 @@
   metal:use-macro="load: mobile_base.pt">
 
   <tal:block metal:fill-slot="content">
-    <div data-role="page" id="page-success">
-        <div id="fea" class="features">
-            <div class="head text-center" style="color:#11a109; font-size:20px; text-shadow:none;">
-                <br/>
-                <img src="${request.static_url('paibei:static/mobile/images/success.png')}"  style="vertical-align:middle;padding-right:10px;" width="58px" height="58px">  防伪验证通过
-            </div>
-            <br/>
-            <div class="head text-center">
-                <img align="absmiddle" src="${product_image_url}" width="288px" height="219px">
-            </div>
-            <br/>
-            <div class="ui-grid-a">
-                <div class="ui-block-a">
-                    <div class="ui-bar ui-bar-c" style="text-align:right;"><img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="126px" height="126px" ></div>
-                </div>
-                <div class="ui-block-b" style="vertical-align:middle;">
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">名称：${product_name}</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">产地：${product_place}</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">售价：${product_price}元</div>
-                    <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">批次号：${batch_id}</div>
-                </div>
-            </div>
-            <br/>
+  <div data-role="page" id="page-success">
+    <div id="fea" class="features">
+      <div class="head text-center" style="color:#11a109; font-size:20px; text-shadow:none;">
+        <br/>
+        <img src="${request.static_url('paibei:static/mobile/images/success.png')}"  style="vertical-align:middle;padding-right:10px;" width="58px" height="58px" />
+        防伪验证通过
+      </div>
+      <br/>
+      <div class="head text-center">
+        <img align="absmiddle" src="${product_image_url}" width="288px" height="219px" />
+      </div>
+      <br/>
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <div class="ui-bar ui-bar-c" style="text-align:right;">
+            <img src="${request.static_url('paibei:static/mobile/images/logo.png')}" width="126px" height="126px" />
+          </div>
         </div>
-        <div Style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff; text-shadow:none;">
-            <p id="contact_us"><img align="absmiddle" src="${request.static_url('paibei:static/mobile/images/phone-1.png')}" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" >  联系我们</p>
+        <div class="ui-block-b" style="vertical-align:middle;">
+          <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">名称：${product_name}</div>
+          <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">产地：${product_place}</div>
+          <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">售价：${product_price}元</div>
+          <div class="ui-bar ui-bar-c" style="color:#ffffff; text-align:left; font-size:12px; text-shadow:none;">批次号：${batch_id}</div>
         </div>
+      </div>
+      <br/>
     </div>
+    <div Style="padding:10px 20px 10px; text-align:center; background:#444447; color:#ffffff; text-shadow:none;">
+      <p id="contact_us">
+      <img align="absmiddle" src="${request.static_url('paibei:static/mobile/images/phone-1.png')}" style="vertical-align:middle;padding-right:10px;" width="19px" height="19px" />
+      联系我们
+      </p>
+    </div>
+  </div>
 
-    <script>
-        $(function () {
-            $('#contact_us').click(function () {
-                $(location).attr('href', "${request.route_url('contact_us')}");
-            });
-        });
-    </script>
+  <script>
+    $(function () {
+      $('#contact_us').click(function () {
+        $(location).attr('href', "${request.route_url('contact_us')}");
+      });
+    });
+  </script>
   </tal:block>
 
 </html>

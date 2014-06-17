@@ -35,7 +35,10 @@ def qrcode_verify(request):
     record = Record.objects(serial_num=record_serial_num).first()
     if record and record.left_time > 0:
         return render_to_response('templates/mobile/mobile_index.pt',
-                                  {'record': record}, request=request)
+                                  {'record_left_time': record.left_time,
+                                   'record_link': request.route_url('qrcode_verify_result',
+                                                                    qrcode_id=record.serial_num)},
+                                  request=request)
     elif record:
         return render_to_response('templates/mobile/failed.pt',
                                   {'message': u'二维码已失效'}, request=request)
