@@ -56,6 +56,7 @@
                 </div>
             </div>
             <br/>
+            <br/>
         </div>
         <div class="features-grids-1 text-center" style="background:#444447">
             <img src="${request.static_url('paibei:static/mobile/images/back_bg.png')}" width="20px" height="16px" onclick="history.back()" >
