@@ -85,6 +85,9 @@ def qrcode_verify_result(request):
     record = Record.objects(serial_num=record_serial_num).first()
 
     if record:
+        record.update(dec__left_time=1)
+        record.reload()
+
         batch = record.batch
         product = batch.product
         return {
