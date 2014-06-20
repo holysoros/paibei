@@ -169,9 +169,17 @@ def _save_product(request, product):
     if price:
         product.price = float(price)
 
-    image = request.POST.get('image', None)
-    if image:
-        product.image.put(image.file)
+    image = request.POST.get('image')
+    try:
+        _ = image.name
+    except AttributeError:
+        pass
+    else:
+        import pdb; pdb.set_trace()
+        if product.image:
+            product.image.replace(image.file)
+        else:
+            product.image.put(image.file)
 
     product.save()
 

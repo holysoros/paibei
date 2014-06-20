@@ -40,7 +40,7 @@ def generate_qrcode(content, outfile):
     qr.make()
 
     im = qr.make_image()
-    im = im.resize((500, 500))
+    im = im.resize((800, 800))
 
     new_im = Image.new('RGB', im.size)
     new_im.paste(im, (0, 0))
@@ -53,10 +53,10 @@ def generate_qrcode(content, outfile):
     icon_size = (icon_width, icon_height)
     icon_position = (icon_pos_x, icon_pos_y)
 
-    icon = Image.open('paibei/static/icon.png')
+    icon = Image.open('paibei/static/icon.jpg')
     icon = icon.resize(icon_size)
 
-    new_im.paste(icon, icon_position, icon)
+    new_im.paste(icon, icon_position)
 
     new_im.save(outfile)
 
