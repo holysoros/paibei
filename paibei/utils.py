@@ -14,6 +14,7 @@ from paibei.models import (
 
 import qrcode
 from PIL import Image
+from models import cities
 
 
 def id_generator(size=6, chars=string.digits+string.letters):
@@ -89,12 +90,12 @@ def _get_pinyin_acronym(str):
 
 
 def get_batch_id(batch):
-    #ts = datetime.datetime.now().strftime('%y%m%d')
-    #product_field = _get_pinyin_acronym(batch.product.name)
-    #dist_place_field = _get_pinyin_acronym(batch.dist_place)
-    #return '-'.join((ts, product_field, dist_place_field))
+    ts = datetime.datetime.now().strftime('%y%m%d')
+    product_field = batch.product.index
+    dist_place_field = cities.index(batch.dist_place) + 1
 
-    return datetime.datetime.now().strftime('%y%m%d-%H-%M')
+    format = '%s-%02d-%02d'
+    return format % (ts, product_field, dist_place_field)
 
 
 def generate_serial_num():
