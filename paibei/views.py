@@ -175,13 +175,12 @@ def _save_product(request, product):
     except AttributeError:
         pass
     else:
-        import pdb; pdb.set_trace()
         if product.image:
             product.image.replace(image.file)
         else:
             product.image.put(image.file)
 
-    product.save()
+    product.saveWithIncreasedIndex()
 
 
 @view_config(route_name='product', request_method='POST')

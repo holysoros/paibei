@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from mongoengine import *
+from mongoengine.errors import NotUniqueError
 import datetime
 
 
@@ -26,6 +27,19 @@ class Product(Document):
     elements = StringField()
     image = ImageField(size=(1024, 1024, True), thumbnail_size=(200, 200, True))
     price = FloatField()
+    index = IntField(unique=True)
+
+    def saveWithIncreasedIndex(self):
+        index = 1
+        while True:
+            try:
+                if not self.index:
+                    self.index = index
+                self.save()
+                break
+            except NotUniqueError:
+                index += 1
+                continue
 
 
 class Batch(Document):
