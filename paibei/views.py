@@ -198,7 +198,7 @@ def upload_batch_nfc(request):
         pass
     else:
         for line in nfc_file.file:
-            nfc_id = line.strip()
+            nfc_id = line.strip().lower()
             NFCRecord(batch=batch, nfc_id=nfc_id).save()
 
     return HTTPFound(location=request.route_url('batch'))
