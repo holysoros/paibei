@@ -14,13 +14,7 @@ from pyramid.httpexceptions import (
     HTTPBadRequest,
     HTTPForbidden,
     )
-from models import (
-    places,
-    cities,
-    Product,
-    Batch,
-    Record,
-    )
+from models import *
 import utils
 from bson.objectid import ObjectId
 from gridfs import NoFile
@@ -192,6 +186,24 @@ def delete_products(request):
     return HTTPFound(location=request.route_url('product'))
 
 
+@view_config(route_name='import_nfc', request_method='POST')
+def upload_batch_nfc(request):
+    batch_id = request.matchdict.get('batch_id')
+    batch = Batch.objects(pk=batch_id).first()
+
+    nfc_file = request.POST.get('nfc_file')
+    try:
+        _ = nfc_file.name
+    except AttributeError:
+        pass
+    else:
+        for line in nfc_file.file:
+            nfc_id = line.strip()
+            NFCRecord(batch=batch, nfc_id=nfc_id).save()
+
+    return HTTPFound(location=request.route_url('batch'))
+
+
 @view_config(route_name='add_batch_page',
              request_method='GET',
              renderer='templates/add_batch.pt')
@@ -304,7 +316,7 @@ def view_image(request):
 def nfc_verify(request):
     nfc_id = request.matchdict.get('nfc_id', None)
 
-    record = Record.objects(nfc_id=nfc_id).first()
+    record = NFCRecord.objects(nfc_id=nfc_id).first()
     if record:
         batch = record.batch
         product = batch.product

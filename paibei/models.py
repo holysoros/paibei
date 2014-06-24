@@ -4,7 +4,8 @@ from mongoengine.errors import NotUniqueError
 import datetime
 
 
-__all__ = ['User', 'Product', 'Batch', 'Record']
+__all__ = ['places', 'cities', 'User', 'Product',
+           'Batch', 'Record', 'NFCRecord']
 
 class User(Document):
     name = StringField(required=True, unique=True)
@@ -57,4 +58,8 @@ class Record(Document):
     index = IntField(required=True)
     serial_num = StringField(min_length=6, max_length=6, required=True)
     left_time = IntField(required=True)
-    nfc_id = StringField()
+
+
+class NFCRecord(Document):
+    batch = ReferenceField(Batch, required=True)
+    nfc_id = StringField(required=True)
