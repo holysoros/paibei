@@ -51,9 +51,6 @@ def add_api_route(config):
 
 
 def add_mobile_web_route(config):
-    config.add_route('qrcode_verify_specific', '/140613-14-38')
-    config.add_route('qrcode_verify_specific_result', '/140613-14-38/r')
-
     config.add_route('qrcode_verify', '/{qrcode_id:[a-zA-Z0-9]{6}}')
     config.add_route('qrcode_verify_result', '/{qrcode_id:[a-zA-Z0-9]{6}}/r')
     config.add_route('contact_us', '/w/c')

@@ -47,37 +47,6 @@ def qrcode_verify(request):
                                   {'message': u'伪造的二维码'}, request=request)
 
 
-@view_config(route_name='qrcode_verify_specific')
-def qrcode_verify_specific(request):
-    record = Record.objects(serial_num='140613-14-38').first()
-    if record and record.left_time > 0:
-        return render_to_response('templates/mobile/mobile_index.pt',
-                                  {'record_left_time': record.left_time,
-                                   'record_link': request.route_url('qrcode_verify_result',
-                                                                    qrcode_id=record.serial_num)},
-                                  request=request)
-    elif record:
-        return render_to_response('templates/mobile/failed.pt',
-                                  {'message': u'二维码已失效'}, request=request)
-
-
-@view_config(route_name='qrcode_verify_specific_result',
-             renderer='templates/mobile/success.pt')
-def qrcode_verify_specific_result(request):
-    record = Record.objects(serial_num='140613-14-38').first()
-
-    if record:
-        batch = record.batch
-        product = batch.product
-        return {
-            'product_image_url': request.route_url('view_image', image_id=product.image._id),
-            'product_name': product.name,
-            'product_place': product.place,
-            'product_price': product.price,
-            'batch_id': batch.bid,
-        }
-
-
 @view_config(route_name='qrcode_verify_result',
              renderer='templates/mobile/success.pt')
 def qrcode_verify_result(request):
