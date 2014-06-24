@@ -26,7 +26,7 @@ class Product(Document):
     place = StringField(choices=places, default=u'台湾', required=True)
     elements = StringField()
     image = ImageField(size=(1024, 1024, True), thumbnail_size=(200, 200, True))
-    price = FloatField()
+    price = IntField()
     index = IntField(unique=True)
 
     def saveWithIncreasedIndex(self):
