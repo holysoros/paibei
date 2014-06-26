@@ -54,12 +54,12 @@ class Batch(Document):
 
 
 class Record(Document):
-    batch = ReferenceField(Batch, required=True)
+    batch = ReferenceField(Batch, required=True, reverse_delete_rule=CASCADE)
     index = IntField(required=True)
     serial_num = StringField(min_length=6, max_length=6, required=True)
     left_time = IntField(required=True)
 
 
 class NFCRecord(Document):
-    batch = ReferenceField(Batch, required=True)
+    batch = ReferenceField(Batch, required=True, reverse_delete_rule=CASCADE)
     nfc_id = StringField(required=True)
