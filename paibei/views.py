@@ -301,6 +301,19 @@ def detail_batch(request):
         }
 
 
+@view_config(route_name='history',
+             request_method='GET',
+             renderer='templates/history_query.pt')
+def history_query(request):
+    return {
+        'header1': 'History',
+        'header2': 'Query',
+        'products': Product.objects.all(),
+        'cities': cities,
+        'batches': Batch.objects.all(),
+        }
+
+
 @view_config(route_name='view_image', request_method='GET')
 def view_image(request):
     image_id = request.matchdict.get('image_id')

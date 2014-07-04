@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="${request.route_url('batch')}">
+                            <a href="${request.route_url('history')}">
                                 <i class="fa fa-calendar"></i> <span>查询结果</span>
                             </a>
                         </li>

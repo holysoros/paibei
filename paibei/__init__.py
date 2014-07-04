@@ -44,6 +44,7 @@ def add_admin_route(config):
     config.add_route('delete_batches', '/admin/batches/delete')
     config.add_route('detail_batch', '/admin/batches/{batch_id}')
     config.add_route('import_nfc', '/admin/batches/{batch_id}/importnfc')
+    config.add_route('history', '/admin/history')
 
 
 def add_api_route(config):
