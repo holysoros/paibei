@@ -63,3 +63,14 @@ class Record(Document):
 class NFCRecord(Document):
     batch = ReferenceField(Batch, required=True, reverse_delete_rule=CASCADE)
     nfc_id = StringField(required=True)
+
+
+class QrcodeHistory(Document):
+    record = ReferenceField(Record, reverse_delete_rule=CASCADE)
+    time = DateTimeField(default=datetime.datetime.now)
+    type = StringField(choices=('ok', 'nok', 'invalid'))
+
+
+class NFCHistory(Document):
+    record = ReferenceField(NFCRecord, reverse_delete_rule=CASCADE)
+    time = DateTimeField(default=datetime.datetime.now)
