@@ -28,11 +28,11 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>标签数量</label>
+                    <label>批次数量</label>
                     <input type="text" class="form-control" name="count">
                 </div>
                 <div class="form-group">
-                    <label>可验证次数</label>
+                    <label>二维码验证次数</label>
                     <input type="text" class="form-control" name="verify_time">
                 </div>
             </div><!-- /.box-body -->
