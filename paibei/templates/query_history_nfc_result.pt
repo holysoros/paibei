@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="load: base.pt">
+
+<tal:block metal:fill-slot="content">
+    <link href="${request.static_url('paibei:static/css/ionicons.min.css')}" rel="stylesheet" type="text/css" />
+    <link href="${request.static_url('paibei:static/css/datatables/dataTables.bootstrap.css')}" rel="stylesheet" type="text/css" />
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">NFC 验证记录查询</h3>                                    
+                    </div><!-- /.box-header -->
+
+                    <div class="box-body table-responsive">
+                        <table id="news_table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>验证时间</th>
+                                    <th>商品名</th>
+                                    <th>经销地</th>
+                                    <th>批次号</th>
+                                </tr>
+                            </thead>
+                            <tbody tal:repeat="entry entries">
+                                <tr>
+                                    <td>${entry.record.nfc_id}</td>
+                                    <td>${entry.time}</td>
+                                    <td>${entry.product.name}</td>
+                                    <td>${entry.dist_place}</td>
+                                    <td>${entry.batch.bid}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>验证时间</th>
+                                    <th>商品名</th>
+                                    <th>经销地</th>
+                                    <th>批次号</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+        </div>
+
+    </section><!-- /.content -->
+</tal:block>
+
+</html>

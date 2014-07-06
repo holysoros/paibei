@@ -5,7 +5,8 @@ import datetime
 
 
 __all__ = ['places', 'cities', 'User', 'Product',
-           'Batch', 'Record', 'NFCRecord']
+           'Batch', 'Record', 'NFCRecord',
+           'QrcodeHistory', 'NFCHistory']
 
 class User(Document):
     name = StringField(required=True, unique=True)
@@ -65,12 +66,21 @@ class NFCRecord(Document):
     nfc_id = StringField(required=True)
 
 
-class QrcodeHistory(Document):
-    record = ReferenceField(Record, reverse_delete_rule=CASCADE)
+class History(Document):
     time = DateTimeField(default=datetime.datetime.now)
+    product = ReferenceField(Product)
+    batch = ReferenceField(Batch)
+    dist_place = StringField(choices=cities)
+
+    meta = {
+        'allow_inheritance': True,
+    }
+
+
+class QrcodeHistory(History):
+    record = ReferenceField(Record, reverse_delete_rule=CASCADE)
     type = StringField(choices=('ok', 'nok', 'invalid'))
 
 
-class NFCHistory(Document):
+class NFCHistory(History):
     record = ReferenceField(NFCRecord, reverse_delete_rule=CASCADE)
-    time = DateTimeField(default=datetime.datetime.now)

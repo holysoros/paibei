@@ -29,18 +29,24 @@ def qrcode_verify(request):
     record = Record.objects(serial_num=record_serial_num).first()
 
     if record and record.left_time > 0:
-        History(record=record, type='ok').save()
+        batch = record.batch
+        product = batch.product
+        QrcodeHistory(record=record, type='ok', product=product,
+                      batch=batch, dist_place=batch.dist_place).save()
         return render_to_response('templates/mobile/mobile_index.pt',
                                   {'record_left_time': record.left_time,
                                    'record_link': request.route_url('qrcode_verify_result',
                                                                     qrcode_id=record.serial_num)},
                                   request=request)
     elif record:
-        History(record=record, type='nok').save()
+        batch = record.batch
+        product = batch.product
+        QrcodeHistory(record=record, type='nok', product=product,
+                      batch=batch, dist_place=batch.dist_place).save()
         return render_to_response('templates/mobile/failed.pt',
                                   {'message': u'二维码已失效'}, request=request)
     else:
-        History(type='invalid').save()
+        QrcodeHistory(type='invalid').save()
         return render_to_response('templates/mobile/failed.pt',
                                   {'message': u'伪造的二维码'}, request=request)
 
@@ -310,7 +316,7 @@ def detail_batch(request):
 @view_config(route_name='history',
              request_method='GET',
              renderer='templates/history_query.pt')
-def history_query(request):
+def get_history_page(request):
     return {
         'header1': 'History',
         'header2': 'Query',
@@ -318,6 +324,49 @@ def history_query(request):
         'cities': cities,
         'batches': Batch.objects.all(),
         }
+
+
+@view_config(route_name='history',
+             request_method='POST')
+def query_history(request):
+    type = request.POST['type']
+
+    if type == 'qrcode':
+        product_name = request.POST['product']
+        dist_place = request.POST['dist_place']
+        bid = request.POST['batch']
+        entries = QrcodeHistory.objects
+        if product_name:
+            product = Product.objects(name=product_name).first()
+            entries = entries.filter(product=product)
+        if dist_place:
+            entries = entries.filter(dist_place=dist_place)
+        if bid:
+            batch = Batch.objects(bid=bid).first()
+            entries = entries.filter(batch=batch)
+        return render_to_response('templates/query_history_qrcode_result.pt',
+                                  { 'header1': 'History Query',
+                                    'header2': 'Result',
+                                    'entries': entries, },
+                                  request=request)
+    elif type == 'nfc':
+        product_name = request.POST['product']
+        dist_place = request.POST['dist_place']
+        bid = request.POST['batch']
+        entries = NFCHistory.objects
+        if product_name:
+            product = Product.objects(name=product_name).first()
+            entries = entries.filter(product=product)
+        if dist_place:
+            entries = entries.filter(dist_place=dist_place)
+        if bid:
+            batch = Batch.objects(bid=bid).first()
+            entries = entries.filter(batch=batch)
+        return render_to_response('templates/query_history_nfc_result.pt',
+                                  { 'header1': 'History Query',
+                                    'header2': 'Result',
+                                    'entries': entries, },
+                                  request=request)
 
 
 @view_config(route_name='view_image', request_method='GET')
@@ -340,7 +389,7 @@ def nfc_verify(request):
         batch = record.batch
         product = batch.product
 
-        NFCHistory(record=record).save()
+        NFCHistory(record=record, product=product, batch=batch, dist_place=batch.dist_place).save()
 
         return {
             'image': request.route_url('view_image', image_id=product.image._id),
