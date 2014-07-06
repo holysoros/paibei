@@ -30,7 +30,7 @@
                             <tbody tal:repeat="entry entries">
                                 <tr>
                                     <td>${entry.record.serial_num}</td>
-                                    <td>${entry.time}</td>
+                                    <td>${entry.time.strftime('%x %X')}</td>
                                     <td>${entry.type}</td>
                                     <td>${entry.product.name}</td>
                                     <td>${entry.dist_place}</td>

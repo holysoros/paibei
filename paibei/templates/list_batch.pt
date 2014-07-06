@@ -36,7 +36,7 @@
                                     <td><a href="${request.route_url('detail_batch', batch_id=batch.id)}">${batch.product.name}</a></td>
                                     <td>${batch.dist_place}</td>
                                     <td>${batch.count}</td>
-                                    <td>${batch.time}</td>
+                                    <td>${batch.time.strftime('%x %X')}</td>
                                     <td><a href="http://112.124.117.97:8080/${batch.bid}.zip">下载</a></td>
                                     <td><button class="btn btn-default delete_btn" id="${batch.id}">删除</button></td>
                                 </tr>

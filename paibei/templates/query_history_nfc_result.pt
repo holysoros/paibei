@@ -29,7 +29,7 @@
                             <tbody tal:repeat="entry entries">
                                 <tr>
                                     <td>${entry.record.nfc_id}</td>
-                                    <td>${entry.time}</td>
+                                    <td>${entry.time.strftime('%x %X')}</td>
                                     <td>${entry.product.name}</td>
                                     <td>${entry.dist_place}</td>
                                     <td>${entry.batch.bid}</td>
