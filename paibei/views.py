@@ -378,7 +378,31 @@ def view_image(request):
         return Response(file.read(), content_type='image/jpeg')
     except NoFile:
         raise HTTPNotFound
+		
+		
+@view_config(renderer='json', route_name='qrcode_noupdate_verify', request_method='GET')
+def qrcode_noupdate_verify(request):
+    record_serial_num = request.matchdict['qrcode_id']
+    record = Record.objects(serial_num=record_serial_num).first()
 
+    if record:
+        record.update(dec__left_time=1)
+        record.reload()
+
+        batch = record.batch
+        product = batch.product
+
+        return {
+            'image': request.route_url('view_image', image_id=product.image._id),
+            'name': product.name,
+            'dist_place': batch.dist_place,
+            'batch_id': batch.bid,
+        }
+    else:
+        request.response.status_int = 404
+        return {}
+
+    return {}
 
 @view_config(renderer='json', route_name='nfc_verify', request_method='GET')
 def nfc_verify(request):

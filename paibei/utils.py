@@ -54,7 +54,7 @@ def generate_qrcode(content, outfile):
     icon_size = (icon_width, icon_height)
     icon_position = (icon_pos_x, icon_pos_y)
 
-    icon = Image.open('paibei/static/icon.jpg')
+    icon = Image.open('/root/drone/paibei/static/icon.jpg')
     icon = icon.resize(icon_size)
 
     new_im.paste(icon, icon_position)

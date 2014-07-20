@@ -50,6 +50,7 @@ def add_admin_route(config):
 
 def add_api_route(config):
     config.add_route('nfc_verify', '/nfc/{nfc_id}')
+    config.add_route('qrcode_noupdate_verify', '/qr/{qrcode_id:[a-zA-Z0-9]{6}}')
 
 
 def add_mobile_web_route(config):
