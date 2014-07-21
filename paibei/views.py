@@ -392,8 +392,9 @@ def qrcode_noupdate_verify(request):
         return {
             'image': request.route_url('view_image', image_id=product.image._id),
             'name': product.name,
+            'prod_place': product.place,
             'dist_place': batch.dist_place,
-            'batch_id': batch.bid,
+            'serial': batch.bid,
         }
     else:
         request.response.status_int = 404
